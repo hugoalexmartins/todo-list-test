@@ -11,6 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+// home of current user
+Route::get('/home', 'HomeController@index')->name('todo_list');
+
+// angular TodoCtr template
+Route::get('/todo/todoCtrl', 'HomeController@todoCtrl')->name('todo_ctrl');
+
+// register new User
+Route::post('register', 'Auth\RegisterController@register');
