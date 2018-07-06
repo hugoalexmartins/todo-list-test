@@ -18,6 +18,7 @@
     <script type="text/javascript" src="https://code.angularjs.org/1.5.7/angular-route.min.js"></script>
     <script type="text/javascript" src="https://code.angularjs.org/1.5.7/angular-animate.min.js"></script>
     <script type="text/javascript" src="https://code.angularjs.org/1.5.7/angular-resource.min.js"></script>
+    <script type="text/javascript" src="https://code.angularjs.org/1.5.7/angular-messages.min.js"></script>
     
 
     <!-- Styles -->
@@ -27,7 +28,9 @@
 
     <script type="text/javascript" src="../js/mainApp.js"></script>
     <script type="text/javascript" src="../js/controllers/todoCtrl.js"></script>
+    <script type="text/javascript" src="../js/controllers/userUpdatePasswordCtrl.js"></script>
     <script type="text/javascript" src="../js/services/todoService.js"></script>
+    <script type="text/javascript" src="../js/services/userService.js"></script>
 
   </head>
   <body ng-app="todomvc">
@@ -46,7 +49,7 @@
             <ul class="navbar-nav mr-auto">
 
             </ul>
-
+            
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
               <!-- Authentication Links -->
@@ -64,11 +67,18 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/#/">
+                    {{ __('My tasks') }}
+                  </a>
+                  <a class="dropdown-item" href="/#updatepassword">
+                    {{ __('Change password') }}
+                  </a>
                   <a class="dropdown-item" href="{{ route('logout') }}"
                      onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();">
                     {{ __('Logout') }}
                   </a>
+                  
 
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf

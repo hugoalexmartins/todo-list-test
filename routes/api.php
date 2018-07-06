@@ -1,6 +1,7 @@
 <?php
 
 use App\Todo;
+use App\User;
 use Illuminate\Http\Request;
 
 /*
@@ -49,13 +50,31 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function() {
           'is_done' => true
         ))->delete();
     
-    return array('sucesss' => true);
+    return array('success' => true);
   });
   
   // delete a Todo
   Route::delete('todos/{id}', function($id) {
     Todo::findOrFail($id)->delete();
     
-    return array('sucesss' => true);
+    return array('success' => true);
   });
+  
+  
+  // update a User password
+  Route::put('user', function(Request $request) {
+    
+    $user = User::find(\Auth::guard('api')->id());
+    $hashedPassword = $user->password;
+    
+    if (Hash::check($request->old, $hashedPassword)) {
+      $user->fill([
+          'password' => Hash::make($request->password)
+      ])->save(); 
+      return array('success' => true);
+    }
+    return array('success' => false, 'errors' => array('password doesnt match'));
+  });
+  
+  
 });

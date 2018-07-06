@@ -23,3 +23,11 @@ Route::get('/todo/todoCtrl', 'HomeController@todoCtrl')->name('todo_ctrl');
 
 // register new User
 Route::post('register', 'Auth\RegisterController@register');
+
+// update password for current User
+Route::get('user/updatepassword', 'Auth\UpdatePasswordController@index')->name('password.form');
+
+// admin bundle
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

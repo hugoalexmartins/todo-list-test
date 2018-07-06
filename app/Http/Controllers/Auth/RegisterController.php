@@ -71,10 +71,17 @@ class RegisterController extends Controller
         ]);
     }
     
+    /**
+     * Generate token after user registration.
+     * 
+     * @param Request $request
+     * @param type $user
+     * @return 
+     */
     protected function registered(Request $request, $user)
     {
         $user->generateToken();
 
-        return response()->json(['data' => $user->toArray()], 201);
+        return redirect('home');
     }
 }

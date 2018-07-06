@@ -6,7 +6,7 @@
  *
  * @type {angular.Module}
  */
-angular.module('todomvc', ['ngRoute', 'ngResource'])
+angular.module('todomvc', ['ngRoute', 'ngResource', 'ngMessages'])
         .config(function ($routeProvider) {
           'use strict';
 
@@ -26,7 +26,7 @@ angular.module('todomvc', ['ngRoute', 'ngResource'])
 
           $routeProvider
                   .when('/', routeConfig)
-                  .when('/:status', routeConfig)
+                  .when('/updatepassword',{controller: 'userUpdatePasswordCtrl', templateUrl: '/user/updatepassword'})
                   .otherwise({
                     redirectTo: '/'
                   });
